@@ -72,7 +72,7 @@ export const neptune = localFont({
       style: "normal",
     },
     {
-      path: "../../public/fonts/Neptune-ExtraBold.woff2",
+      path: "../../public/fonts/Neptune-Extrabold.woff2",
       weight: "800",
       style: "normal",
     },
