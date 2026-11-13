@@ -9,9 +9,9 @@ const comfortText =
 
 const slides = [
   { image: "/assets/comfort/comfort.png", title: "More Than Just a Homestay" },
-  { image: "/assets/comfort/comfort2.png", title: "A Place to Feel at Home" },
-  { image: "/assets/comfort/comfort3.png", title: "Experience Local Living" },
-  { image: "/assets/comfort/comfort4.png", title: "Stay Close to Nature" },
+  { image: "/assets/comfort/comfort2.png", title: "" },
+  { image: "/assets/comfort/comfort3.png", title: "" },
+  { image: "/assets/comfort/comfort4.png", title: "" },
 ];
 
 const comfortCards = [
