@@ -167,7 +167,7 @@ export default function ComfortPage() {
               type="button"
               onClick={() => setActiveSlide(index)}
               aria-label={`Go to slide ${index + 1}`}
-              className={`h-1.5 w-1.6 rotate-45 border border-black ${
+              className={`h-1.5 w-1.5 rotate-45 border border-black ${
                 activeSlide === index ? "bg-black" : "bg-black/10"
               }`}
             />
@@ -196,7 +196,7 @@ export default function ComfortPage() {
       <section className="w-full bg-[#f8f1e7] px-5 py-16 sm:px-8 md:px-16 md:py-10 2xl:px-20 2xl:py-16 min-[1920px]:px-28 min-[1920px]:py-20">
         <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-12 xl:max-w-[1400px] 2xl:max-w-[1500px] 2xl:gap-16 min-[1920px]:max-w-[1680px] min-[1920px]:gap-20">
           <h2 className="translate-x-0 font-moulin text-[32px] font-medium leading-[150%] text-[#555] md:translate-x-6 2xl:text-[36px] min-[1920px]:text-[40px]">
-            Connect With The Local Legends
+            Connect with the Local Legends
           </h2>
 
           <p className="font-neptune text-[15px] leading-[150%] sm:text-base 2xl:text-[17px] min-[1920px]:text-lg">
