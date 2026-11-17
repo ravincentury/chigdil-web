@@ -42,23 +42,23 @@ export default function Footer() {
         </div>
 
         {/* Stay at Rumbak */}
-        <div className="absolute left-[47%] top-[29%] max-md:static max-md:mt-8 max-md:px-6 2xl:top-[27%] min-[1920px]:top-[26%]">
-          <h3 className="font-moulin text-[14px] text-[#f2dfc3] 2xl:text-[16px] min-[1920px]:text-[18px]">
+        <div className="absolute left-[50%] top-[29%] max-md:static max-md:mt-8 max-md:px-6 2xl:top-[27%] min-[1920px]:top-[26%]">
+          <h3 className="font-moulin text-[16px] text-[#f2dfc3] 2xl:text-[18px] min-[1920px]:text-[20px]">
             Stay at Rumbak
           </h3>
 
-          <p className="mt-1 block font-neptune text-[14px] text-[#f2dfc3] 2xl:text-[15px] min-[1920px]:text-[17px]">
+          <p className="mt-1 block font-neptune text-[16px] text-[#f2dfc3] 2xl:text-[18px] min-[1920px]:text-[20px]">
             chigdil.rumbak@gmail.com
           </p>
 
-          <p className="mt-1 block font-neptune text-[14px] text-[#f2dfc3] 2xl:text-[15px] min-[1920px]:text-[17px]">
+          <p className="mt-1 block font-neptune text-[16px] text-[#f2dfc3] 2xl:text-[18px] min-[1920px]:text-[20px]">
             +91 9469-451132
           </p>
         </div>
 
         {/* Join Our Community */}
         <div className="absolute left-[74%] top-[29%] w-[18.5%] max-md:static max-md:mt-7 max-md:w-full max-md:px-6 2xl:top-[27%] 2xl:w-[19%] min-[1920px]:top-[26%] min-[1920px]:w-[20%]">
-          <h3 className="font-moulin text-[14px] text-[#f2dfc3] 2xl:text-[16px] min-[1920px]:text-[18px]">
+          <h3 className="font-moulin text-[16px] text-[#f2dfc3] 2xl:text-[18px] min-[1920px]:text-[20px]">
             Join our community
           </h3>
 
@@ -72,7 +72,7 @@ export default function Footer() {
             <button
               type="submit"
               aria-label="Subscribe"
-              className="ml-2 font-neptune text-[20px] text-[#f2dfc3] 2xl:text-[22px] min-[1920px]:text-[25px]"
+              className="ml-2 font-neptune text-[20px] text-[#f2dfc3] 2xl:text-[22px] min-[1920px]:text-[22px]"
             >
               →
             </button>

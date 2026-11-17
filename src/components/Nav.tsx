@@ -21,7 +21,7 @@ export default function Navbar() {
   const isComfortPage = pathname === "/comfort";
 
   const textColor = isComfortPage
-    ? "text-[#000000]"
+    ? "text-[#555]"
     : "text-[#F8F1E7]";
 
   // Mobile menu background
@@ -31,10 +31,10 @@ export default function Navbar() {
 
   return (
     <header className="absolute z-50 w-full bg-transparent">
-      <nav className="mx-auto flex min-h-[100px] max-w-[1600px] items-center justify-between px-4 sm:px-8 md:px-12 lg:px-20 min-[1070px]:grid min-[1070px]:grid-cols-12">
+      <nav className="mx-auto flex min-h-[100px] max-w-[1600px] items-center justify-between px-5 sm:px-8 md:px-12 lg:px-20 min-[1070px]:grid min-[1070px]:grid-cols-12">
 
         {/* Logo + Brand */}
-        <div className="flex shrink-0 items-center gap-1 sm:gap-2 min-[1070px]:col-span-4">
+        <div className="flex shrink-0 items-center gap-1 sm:gap-2 min-[1070px]:col-span-4 min-[1920px]:">
 
           {/* Logo */}
           <Link
@@ -45,16 +45,16 @@ export default function Navbar() {
             <Image
               src="/assets/logo/ChigDil.png"
               alt="ChigDil Homestays Logo"
-              width={149}
+              width={118}
               height={179}
               priority
-              className="h-[125px] w-auto object-contain sm:h-[125px] lg:h-[140px] xl:h-[140px] 2xl:h-[140px] min-[1920px]:h-[140px]"
+              className="h-[179px] w-[118px] shrink-0 object-contain"
             />
           </Link>
 
           {/* Brand Name */}
           <div
-            className={`-translate-y-9 flex items-center gap-1 whitespace-nowrap ${textColor}`}
+            className={`-translate-y-12 flex items-center gap-1 whitespace-nowrap ${textColor}`}
           >
             <span className="font-moulin text-[16px] font-medium leading-none">
               ChigDil
@@ -75,7 +75,7 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <div
-          className={`hidden min-[1070px]:col-span-8 min-[1070px]:flex -translate-y-9 shrink-0 items-center justify-end gap-5 xl:gap-9 2xl:gap-10 min-[1920px]:gap-10 ${textColor}`}
+          className={`hidden min-[1070px]:col-span-8 min-[1070px]:flex -translate-y-12 shrink-0 items-center justify-end gap-5 xl:gap-9 2xl:gap-10 min-[1920px]:gap-10 ${textColor}`}
         >
           {navLinks.map((link) => (
             <Link

@@ -1,11 +1,8 @@
 "use client";
 
-import {
-  Children,
-  useRef,
-  useState,
-} from "react";
+import { Children, useRef, useState,} from "react";
 import type { ReactNode, WheelEvent } from "react";
+import Image from "next/image";
 
 type CardCarouselProps = {
   children: ReactNode;
@@ -75,11 +72,11 @@ export default function CardCarousel({
 
   // Arrow controls
   const scrollPrevious = () => {
-    scrollToCard(Math.max(activeIndex - 1, 0));
+    scrollToCard(Math.max(activeIndex - 3, 0));
   };
 
   const scrollNext = () => {
-    scrollToCard(Math.min(activeIndex + 1, totalCards - 1));
+    scrollToCard(Math.min(activeIndex + 3, totalCards - 1));
   };
 
   // Mouse wheel horizontal scrolling
@@ -114,7 +111,7 @@ export default function CardCarousel({
       </div>
 
       {/* Bottom Indicators and Arrows */}
-      <div className="mt-6 flex items-center justify-between 2xl:mt-8 min-[1920px]:mt-10">
+      <div className="mt-6 flex items-center justify-between 2xl:mt-8 min-[1920px]:mt-10 pr-22">
 
         {/* Diamond Indicators */}
         <div className="flex items-center gap-1">
@@ -145,9 +142,15 @@ export default function CardCarousel({
             onClick={scrollPrevious}
             disabled={activeIndex === 0}
             aria-label="Previous cards"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-[#aa391c] text-[#aa391c] transition hover:bg-[#aa391c] hover:text-white disabled:cursor-not-allowed disabled:opacity-30 2xl:h-10 2xl:w-10 min-[1920px]:h-11 min-[1920px]:w-11"
           >
-            <span className="text-xl leading-none">‹</span>
+            {/*Arrows*/}
+          <Image 
+          src="/assets/buttons/left-arrow.png"
+          alt="Previous Arrow"
+          width={32}
+          height={32}
+          className="w-8 h-8"
+          />
           </button>
 
           <button
@@ -155,9 +158,14 @@ export default function CardCarousel({
             onClick={scrollNext}
             disabled={activeIndex === totalCards - 1 || totalCards === 0}
             aria-label="Next cards"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-[#aa391c] text-[#aa391c] transition hover:bg-[#aa391c] hover:text-white disabled:cursor-not-allowed disabled:opacity-30 2xl:h-10 2xl:w-10 min-[1920px]:h-11 min-[1920px]:w-11"
           >
-            <span className="text-xl leading-none">›</span>
+           <Image 
+           src="/assets/buttons/right-arrow.png"
+           alt="Next Arrow"
+           width={32}
+           height={32}
+           className="w-8 h-8"
+           />
           </button>
         </div>
 
