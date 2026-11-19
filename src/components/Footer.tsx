@@ -17,9 +17,9 @@ export default function Footer() {
       </div>
 
       {/* Footer Main Content */}
-      <div className="relative mx-auto min-h-[255px] w-full max-w-[1536px] xl:min-h-[255px] 2xl:min-h-[280px] 2xl:max-w-[1700px] min-[1920px]:min-h-[320px] min-[1920px]:max-w-[1800px]">
+      <div className="relative mx-auto min-h-[255px] w-full xl:min-h-[255px] 2xl:min-h-[280px] min-[1920px]:min-h-[320px]">
 
-        {/* 2. Flower Image */}
+        {/* 2. Flower Image - Untouched */}
         <div className="absolute bottom-0 left-[4.5%] w-[110px] max-md:left-[5%] max-md:w-[85px] 2xl:w-[125px] min-[1920px]:w-[145px]">
           <Image
             src="/assets/footer/flower.png"
@@ -30,7 +30,7 @@ export default function Footer() {
           />
         </div>
 
-        {/* 3. Leopard Image */}
+        {/* 3. Leopard Image - Untouched */}
         <div className="absolute left-[11.5%] top-[2%] w-[265px] max-md:left-[25%] max-md:top-[3%] max-md:w-[65%] max-md:max-w-[250px] 2xl:w-[290px] min-[1920px]:w-[320px]">
           <Image
             src="/assets/footer/leopard.png"
@@ -41,8 +41,8 @@ export default function Footer() {
           />
         </div>
 
-        {/* Stay at Rumbak */}
-        <div className="absolute left-[50%] top-[29%] max-md:static max-md:mt-8 max-md:px-6 2xl:top-[27%] min-[1920px]:top-[26%]">
+        {/* Stay at Rumbak - Moved closer to Join our community */}
+        <div className="absolute right-[380px] top-[29%] max-md:static max-md:mt-8 max-md:px-6 2xl:right-[420px] 2xl:top-[27%] min-[1920px]:right-[460px] min-[1920px]:top-[26%]">
           <h3 className="font-moulin text-[16px] text-[#f2dfc3] 2xl:text-[18px] min-[1920px]:text-[20px]">
             Stay at Rumbak
           </h3>
@@ -56,8 +56,8 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Join Our Community */}
-        <div className="absolute left-[74%] top-[29%] w-[18.5%] max-md:static max-md:mt-7 max-md:w-full max-md:px-6 2xl:top-[27%] 2xl:w-[19%] min-[1920px]:top-[26%] min-[1920px]:w-[20%]">
+        {/* Join Our Community - Left aligned with Book Your Stay button */}
+        <div className="absolute right-16 top-[29%] w-[266.48px] max-md:static max-md:mt-7 max-md:w-full max-md:px-6 2xl:right-24 2xl:top-[27%] min-[1920px]:right-32 min-[1920px]:top-[26%]">
           <h3 className="font-moulin text-[16px] text-[#f2dfc3] 2xl:text-[18px] min-[1920px]:text-[20px]">
             Join our community
           </h3>
@@ -79,8 +79,8 @@ export default function Footer() {
           </form>
         </div>
 
-        {/* 4. WhatsApp and 5. Instagram Images */}
-        <div className="absolute left-[74%] top-[72%] flex items-center gap-7 max-md:static max-md:mt-8 max-md:px-6 2xl:gap-8 min-[1920px]:gap-10">
+        {/* 4. WhatsApp and 5. Instagram Images - Left aligned with Join our community */}
+        <div className="absolute right-16 top-[72%] flex w-[266.48px] items-center gap-7 max-md:static max-md:mt-8 max-md:w-auto max-md:px-6 2xl:right-24 2xl:gap-8 min-[1920px]:right-32 min-[1920px]:gap-10">
 
           <a
             href="https://wa.me/919469451132"
@@ -115,7 +115,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <p className="absolute bottom-[19%] right-[7.5%] font-neptune text-[12px] text-[#f8f1e7] opacity-50 max-md:static max-md:mt-6 max-md:pb-6 max-md:pl-6 2xl:text-[13px] min-[1920px]:text-[15px]">
+        <p className="absolute bottom-[19%] right-16 font-neptune text-[12px] text-[#f8f1e7] opacity-50 max-md:static max-md:mt-6 max-md:pb-6 max-md:pl-6 2xl:right-24 2xl:text-[13px] min-[1920px]:right-32 min-[1920px]:text-[15px]">
           @chigdil 2026
         </p>
 

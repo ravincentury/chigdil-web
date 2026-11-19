@@ -1,6 +1,6 @@
 "use client";
 
-import { Children, useRef, useState,} from "react";
+import { Children, useRef, useState } from "react";
 import type { ReactNode, WheelEvent } from "react";
 import Image from "next/image";
 
@@ -11,8 +11,7 @@ type CardCarouselProps = {
 
 export default function CardCarousel({
   children,
-  itemClassName =
-    "w-[min(68vw,268px)] shrink-0 md:w-[268px] xl:w-[268px] 2xl:w-[280px] min-[1920px]:w-[300px]",
+  itemClassName = "w-[268px] shrink-0",
 }: CardCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -20,7 +19,7 @@ export default function CardCarousel({
   const cards = Children.toArray(children);
   const totalCards = cards.length;
 
-  // Get each card's position relative to the slider
+  // Card position
   const getCardPosition = (item: HTMLElement) => {
     const container = scrollRef.current;
     if (!container) return 0;
@@ -32,7 +31,7 @@ export default function CardCarousel({
     );
   };
 
-  // Update active diamond while scrolling
+  // Active diamond update
   const updateActiveIndex = () => {
     const container = scrollRef.current;
     if (!container) return;
@@ -56,7 +55,7 @@ export default function CardCarousel({
     setActiveIndex(closestIndex);
   };
 
-  // Scroll to selected card using its actual position
+  // Scroll to card
   const scrollToCard = (index: number) => {
     const container = scrollRef.current;
     if (!container) return;
@@ -70,7 +69,7 @@ export default function CardCarousel({
     });
   };
 
-  // Arrow controls
+  // Arrow navigation - 3 card jump
   const scrollPrevious = () => {
     scrollToCard(Math.max(activeIndex - 3, 0));
   };
@@ -79,7 +78,7 @@ export default function CardCarousel({
     scrollToCard(Math.min(activeIndex + 3, totalCards - 1));
   };
 
-  // Mouse wheel horizontal scrolling
+  // Mouse wheel horizontal scroll
   const handleWheel = (event: WheelEvent<HTMLDivElement>) => {
     const container = scrollRef.current;
     if (!container) return;
@@ -92,13 +91,12 @@ export default function CardCarousel({
 
   return (
     <div className="relative w-full">
-
-      {/* Horizontal Cards */}
+      {/* Cards Slider */}
       <div
         ref={scrollRef}
         onScroll={updateActiveIndex}
         onWheel={handleWheel}
-        className="flex w-full gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide xl:gap-8 2xl:gap-10 min-[1920px]:gap-12"
+        className="flex w-full gap-[32px] overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide pr-5 md:pr-0"
       >
         {cards.map((card, index) => (
           <div
@@ -110,11 +108,11 @@ export default function CardCarousel({
         ))}
       </div>
 
-      {/* Bottom Indicators and Arrows */}
-      <div className="mt-6 flex items-center justify-between 2xl:mt-8 min-[1920px]:mt-10 pr-22">
+      {/* Bottom Controls Area */}
+      <div className="relative mt-6 h-10 w-full">
 
-        {/* Diamond Indicators */}
-        <div className="flex items-center gap-1">
+        {/* Diamond Indicators - Separate */}
+        <div className="absolute left-0 top-0 flex items-center gap-1">
           {cards.map((_, index) => (
             <button
               key={index}
@@ -135,22 +133,22 @@ export default function CardCarousel({
           ))}
         </div>
 
-        {/* Arrow Buttons */}
-        <div className="flex items-center gap-3 2xl:gap-4">
+        {/* Arrow Buttons - Aligned with 4th card edge */}
+        <div className="absolute right-6 top-0 flex w-[88px] shrink-0 items-center justify-between md:right-40 xl:right-44 2xl:right-50">
           <button
             type="button"
             onClick={scrollPrevious}
             disabled={activeIndex === 0}
             aria-label="Previous cards"
+            className="flex h-10 w-10 items-center justify-center"
           >
-            {/*Arrows*/}
-          <Image 
-          src="/assets/buttons/left-arrow.png"
-          alt="Previous Arrow"
-          width={32}
-          height={32}
-          className="w-8 h-8"
-          />
+            <Image
+              src="/assets/buttons/left-arrow.png"
+              alt="Previous Arrow"
+              width={32}
+              height={32}
+              className="h-8 w-8 object-contain"
+            />
           </button>
 
           <button
@@ -158,14 +156,15 @@ export default function CardCarousel({
             onClick={scrollNext}
             disabled={activeIndex === totalCards - 1 || totalCards === 0}
             aria-label="Next cards"
+            className="flex h-10 w-10 items-center justify-center"
           >
-           <Image 
-           src="/assets/buttons/right-arrow.png"
-           alt="Next Arrow"
-           width={32}
-           height={32}
-           className="w-8 h-8"
-           />
+            <Image
+              src="/assets/buttons/right-arrow.png"
+              alt="Next Arrow"
+              width={32}
+              height={32}
+              className="h-8 w-8 object-contain"
+            />
           </button>
         </div>
 

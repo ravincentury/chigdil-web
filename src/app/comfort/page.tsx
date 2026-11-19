@@ -51,6 +51,7 @@ export default function ComfortPage() {
           alt={currentSlide.title}
           fill
           priority
+          quality={100}
           sizes="100vw"
           className="object-cover"
         />
@@ -138,6 +139,7 @@ export default function ComfortPage() {
             alt={currentSlide.title}
             fill
             priority
+            quality={100}
             sizes="100vw"
             className="object-cover"
           />
@@ -206,9 +208,9 @@ export default function ComfortPage() {
       </section>
 
       {/* CONNECT SECTION */}
-      <section className="w-full bg-[#f8f1e7] px-5 py-16 sm:px-8 md:px-16 md:py-10 2xl:px-20 2xl:py-16 min-[1920px]:px-28 min-[1920px]:py-20">
-        <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-start gap-8 md:grid-cols-2 md:gap-12 xl:max-w-[1400px] 2xl:max-w-[1500px] 2xl:gap-16 min-[1920px]:max-w-[1680px] min-[1920px]:gap-20">
-          <h2 className="translate-x-0 font-moulin text-[32px] font-medium leading-[150%] text-[#555] md:translate-x-6 2xl:text-[36px] min-[1920px]:text-[40px]">
+      <section className="w-full bg-[#f8f1e7] px-5 py-16 md:px-16 md:py-10 xl:px-16 2xl:px-24 2xl:py-16 min-[1920px]:px-32 min-[1920px]:py-20">
+        <div className="grid w-full grid-cols-1 items-start gap-8 md:grid-cols-2 md:gap-12 2xl:gap-16 min-[1920px]:gap-20">
+          <h2 className="font-moulin text-[32px] font-medium leading-[150%] text-[#555] md:translate-x-8 2xl:text-[36px] min-[1920px]:translate-x-12 min-[1920px]:text-[40px]">
             Connect with the Local Legends
           </h2>
 
@@ -219,31 +221,30 @@ export default function ComfortPage() {
       </section>
 
       {/* COMFORT CARDS SECTION */}
-      <section className="w-full overflow-hidden bg-[#f8f1e7] pl-5 pb-16 pt-14 sm:pl-8 md:pl-16 2xl:pl-20 min-[1920px]:pl-28">
-        <div className="ml-4 2xl:ml-4 2xl:w-full">
-          <CardSlider itemClassName="w-[250px] shrink-0">
-            {comfortCards.map((card) => (
-              <div
-                key={card.id}
-                className="relative h-[400px] w-full overflow-hidden"
-              >
-                <Image
-                  src={card.image}
-                  alt={card.name}
-                  fill
-                  sizes="268px"
-                  className="object-contain"
-                />
-              </div>
-            ))}
-          </CardSlider>
-        </div>
+      <section className="w-full overflow-hidden bg-[#f8f1e7] pb-16 pt-0 pl-5 pr-0 md:pl-24 2xl:pl-32 min-[1920px]:pl-44">
+        <CardSlider itemClassName="w-[268px] shrink-0 md:w-[calc((100vw-224px)/4.5)] 2xl:w-[calc((100vw-256px)/4.5)] min-[1920px]:w-[calc((100vw-304px)/4.5)]">
+          {comfortCards.map((card) => (
+            <div
+              key={card.id}
+              className="relative aspect-[268/425] w-full overflow-hidden"
+            >
+              <Image
+                src={card.image}
+                alt={card.name}
+                fill
+                quality={100}
+                sizes="(max-width: 768px) 268px, 350px"
+                className="object-cover"
+              />
+            </div>
+          ))}
+        </CardSlider>
       </section>
 
       {/* A RENEWED LIVING HERITAGE SECTION */}
-      <section className="mt-0 w-full bg-[#f8f1e7] px-5 py-26 sm:px-8 md:px-20 md:py-10 2xl:px-20 2xl:py-16 min-[1920px]:px-28 min-[1920px]:py-20">
-        <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-start gap-8 md:grid-cols-2 md:gap-12 xl:max-w-[1400px] 2xl:max-w-[1500px] 2xl:gap-16 min-[1920px]:max-w-[1680px] min-[1920px]:gap-20">
-          <h2 className="translate-x-0 font-moulin text-[32px] font-medium tracking-tight text-[#555] md:-translate-x-1 2xl:text-[36px] min-[1920px]:text-[40px]">
+      <section className="mt-0 w-full bg-[#f8f1e7] px-5 py-26 md:px-16 md:py-10 xl:px-16 2xl:px-24 2xl:py-16 min-[1920px]:px-32 min-[1920px]:py-20">
+        <div className="grid w-full grid-cols-1 items-start gap-8 md:grid-cols-2 md:gap-12 2xl:gap-16 min-[1920px]:gap-20">
+          <h2 className="font-moulin text-[32px] font-medium tracking-tight text-[#555] md:translate-x-8 2xl:text-[36px] min-[1920px]:text-[40px]">
             A Renewed Living Heritage
           </h2>
 
@@ -288,7 +289,7 @@ export default function ComfortPage() {
         <button
           type="button"
           aria-label="Next"
-          className="absolute right-8 top-1/2 z-10 -translate-y-1/2 2xl:right-12 "
+          className="absolute right-8 top-1/2 z-10 -translate-y-1/2 2xl:right-12"
         >
           <Image
             src="/assets/buttons/right.png"
