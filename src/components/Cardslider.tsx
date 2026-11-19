@@ -133,8 +133,8 @@ export default function CardCarousel({
           ))}
         </div>
 
-        {/* Arrow Buttons - Aligned with 4th card edge */}
-        <div className="absolute right-6 top-0 flex w-[88px] shrink-0 items-center justify-between md:right-40 xl:right-44 2xl:right-50">
+        {/* Arrow Buttons - Moved right */}
+        <div className="absolute right-6 top-0 flex w-[88px] shrink-0 items-center justify-between md:right-20 xl:right-32 2xl:right-36">
           <button
             type="button"
             onClick={scrollPrevious}
