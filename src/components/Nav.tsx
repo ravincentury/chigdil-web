@@ -47,8 +47,12 @@ export default function Navbar() {
               alt="ChigDil Homestays Logo"
               width={118}
               height={179}
-              priority
-              className="h-[179px] w-[118px] shrink-0 object-contain"
+              unoptimized
+              style={{
+                width:"118px",
+                height:"179px",
+                objectFit:"contain"
+              }}
             />
           </Link>
 

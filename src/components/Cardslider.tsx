@@ -1,25 +1,63 @@
 "use client";
 
-import { Children, useRef, useState } from "react";
+import { Children, useEffect, useRef, useState } from "react";
 import type { ReactNode, WheelEvent } from "react";
 import Image from "next/image";
 
 type CardCarouselProps = {
   children: ReactNode;
   itemClassName?: string;
+  paddingLeftPx?: number;
 };
 
 export default function CardCarousel({
   children,
   itemClassName = "w-[268px] shrink-0",
+  paddingLeftPx = 121,
 }: CardCarouselProps) {
+  const rootRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [arrowRight, setArrowRight] = useState<number | null>(null);
 
   const cards = Children.toArray(children);
   const totalCards = cards.length;
 
-  // Card position
+  useEffect(() => {
+    const updateArrowPosition = () => {
+      const root = rootRef.current;
+      const track = scrollRef.current;
+      if (!root || !track) return;
+
+      const fourthCard = track.children[3] as HTMLElement | undefined;
+      if (!fourthCard) {
+        setArrowRight(null);
+        return;
+      }
+
+      const rootRect = root.getBoundingClientRect();
+      const fourthCardRect = fourthCard.getBoundingClientRect();
+
+      const offsetFromRight = Math.max(
+        0,
+        Math.round(rootRect.right - fourthCardRect.right)
+      );
+      setArrowRight(offsetFromRight);
+    };
+
+    updateArrowPosition();
+
+    const observer = new ResizeObserver(updateArrowPosition);
+    if (rootRef.current) observer.observe(rootRef.current);
+    if (scrollRef.current) observer.observe(scrollRef.current);
+
+    window.addEventListener("resize", updateArrowPosition);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateArrowPosition);
+    };
+  }, [totalCards, paddingLeftPx]);
+
   const getCardPosition = (item: HTMLElement) => {
     const container = scrollRef.current;
     if (!container) return 0;
@@ -31,7 +69,6 @@ export default function CardCarousel({
     );
   };
 
-  // Active diamond update
   const updateActiveIndex = () => {
     const container = scrollRef.current;
     if (!container) return;
@@ -42,9 +79,7 @@ export default function CardCarousel({
     let closestDistance = Infinity;
 
     items.forEach((item, index) => {
-      const distance = Math.abs(
-        getCardPosition(item) - container.scrollLeft
-      );
+      const distance = Math.abs(getCardPosition(item) - container.scrollLeft);
 
       if (distance < closestDistance) {
         closestDistance = distance;
@@ -55,7 +90,6 @@ export default function CardCarousel({
     setActiveIndex(closestIndex);
   };
 
-  // Scroll to card
   const scrollToCard = (index: number) => {
     const container = scrollRef.current;
     if (!container) return;
@@ -69,7 +103,6 @@ export default function CardCarousel({
     });
   };
 
-  // Arrow navigation - 3 card jump
   const scrollPrevious = () => {
     scrollToCard(Math.max(activeIndex - 3, 0));
   };
@@ -78,7 +111,6 @@ export default function CardCarousel({
     scrollToCard(Math.min(activeIndex + 3, totalCards - 1));
   };
 
-  // Mouse wheel horizontal scroll
   const handleWheel = (event: WheelEvent<HTMLDivElement>) => {
     const container = scrollRef.current;
     if (!container) return;
@@ -90,19 +122,17 @@ export default function CardCarousel({
   };
 
   return (
-    <div className="relative w-full">
+    <div ref={rootRef} className="relative w-full">
       {/* Cards Slider */}
       <div
         ref={scrollRef}
         onScroll={updateActiveIndex}
         onWheel={handleWheel}
-        className="flex w-full gap-[32px] overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide pr-5 md:pr-0"
+        style={{ paddingLeft: `${paddingLeftPx}px` }}
+        className="flex w-full gap-[32px] overflow-x-auto scroll-smooth scrollbar-hide"
       >
         {cards.map((card, index) => (
-          <div
-            key={index}
-            className={`${itemClassName} snap-start`}
-          >
+          <div key={index} className={itemClassName}>
             {card}
           </div>
         ))}
@@ -110,9 +140,11 @@ export default function CardCarousel({
 
       {/* Bottom Controls Area */}
       <div className="relative mt-6 h-10 w-full">
-
-        {/* Diamond Indicators - Separate */}
-        <div className="absolute left-0 top-0 flex items-center gap-1">
+        {/* Diamond Indicators */}
+        <div
+          style={{ left: `${paddingLeftPx}px` }}
+          className="absolute top-0 flex items-center gap-1"
+        >
           {cards.map((_, index) => (
             <button
               key={index}
@@ -133,14 +165,17 @@ export default function CardCarousel({
           ))}
         </div>
 
-        {/* Arrow Buttons - Moved right */}
-        <div className="absolute right-6 top-0 flex w-[88px] shrink-0 items-center justify-between md:right-20 xl:right-32 2xl:right-36">
+        {/* Arrow Buttons */}
+        <div
+          style={arrowRight !== null ? { right: `${arrowRight}px` } : undefined}
+          className="absolute right-0 top-0 flex w-[88px] shrink-0 items-center justify-between"
+        >
           <button
             type="button"
             onClick={scrollPrevious}
             disabled={activeIndex === 0}
             aria-label="Previous cards"
-            className="flex h-10 w-10 items-center justify-center"
+            className="flex h-8 w-8 items-center justify-center"
           >
             <Image
               src="/assets/buttons/left-arrow.png"
@@ -156,7 +191,7 @@ export default function CardCarousel({
             onClick={scrollNext}
             disabled={activeIndex === totalCards - 1 || totalCards === 0}
             aria-label="Next cards"
-            className="flex h-10 w-10 items-center justify-center"
+            className="flex h-8 w-8 items-center justify-center"
           >
             <Image
               src="/assets/buttons/right-arrow.png"
@@ -167,7 +202,6 @@ export default function CardCarousel({
             />
           </button>
         </div>
-
       </div>
     </div>
   );

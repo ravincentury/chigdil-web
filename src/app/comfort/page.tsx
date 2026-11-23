@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CardSlider from "@/components/Cardslider";
 
 const comfortText =
@@ -26,9 +26,27 @@ const comfortCards = [
   { id: 9, name: "Tsering Yangskit", image: "/assets/cards/yangskit.png" },
 ];
 
+function getResponsivePaddingLeft(width: number): number {
+  if (width >= 1920) return 127;
+  if (width >= 1536) return 122;
+  if (width >= 768) return 97;
+  return 20;
+}
+
 export default function ComfortPage() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [paddingLeftPx, setPaddingLeftPx] = useState<number>(109);
   const currentSlide = slides[activeSlide];
+
+  useEffect(() => {
+    const handleResize = () => {
+      setPaddingLeftPx(getResponsivePaddingLeft(window.innerWidth));
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const previousSlide = () => {
     setActiveSlide((prev) =>
@@ -221,8 +239,11 @@ export default function ComfortPage() {
       </section>
 
       {/* COMFORT CARDS SECTION */}
-      <section className="w-full overflow-hidden bg-[#f8f1e7] pb-16 pt-0 pl-5 pr-0 md:pl-24 2xl:pl-32 min-[1920px]:pl-44">
-        <CardSlider itemClassName="w-[268px] shrink-0 md:w-[calc((100vw-224px)/4.5)] 2xl:w-[calc((100vw-256px)/4.5)] min-[1920px]:w-[calc((100vw-304px)/4.5)]">
+      <section className="w-full overflow-x-clip bg-[#f8f1e7] pb-16 pt-0">
+        <CardSlider
+          paddingLeftPx={paddingLeftPx}
+          itemClassName="w-[268px] shrink-0 md:w-[calc(23.66vw-49.7778px)] xl:w-[calc((100vw-256px)/4.1)] 2xl:w-[calc((100vw-256px)/4.2)] min-[1920px]:w-[calc((100vw-304px)/4.1)]"
+        >
           {comfortCards.map((card) => (
             <div
               key={card.id}
@@ -244,7 +265,7 @@ export default function ComfortPage() {
       {/* A RENEWED LIVING HERITAGE SECTION */}
       <section className="mt-0 w-full bg-[#f8f1e7] px-5 py-26 md:px-16 md:py-10 xl:px-16 2xl:px-24 2xl:py-16 min-[1920px]:px-32 min-[1920px]:py-20">
         <div className="grid w-full grid-cols-1 items-start gap-8 md:grid-cols-2 md:gap-12 2xl:gap-16 min-[1920px]:gap-20">
-          <h2 className="font-moulin text-[32px] font-medium tracking-tight text-[#555] md:translate-x-8 2xl:text-[36px] min-[1920px]:text-[40px]">
+          <h2 className="font-moulin text-[32px] font-medium tracking-tight text-[#555] md:translate-x-8 2xl:text-[36px] min-[1920px]:translate-x-12 min-[1920px]:text-[40px]">
             A Renewed Living Heritage
           </h2>
 
@@ -263,11 +284,14 @@ export default function ComfortPage() {
         <Image
           src="/assets/comfort/hall.png"
           alt="Hall image"
-          fill
-          priority
-          quality={100}
-          sizes="100vw"
-          className="object-cover"
+          width={1200}
+          height={1200}
+          unoptimized
+          style={{
+            width: "100%",
+            height: "auto",
+            objectFit: "contain",
+          }}
         />
 
         {/* LEFT ARROW */}
