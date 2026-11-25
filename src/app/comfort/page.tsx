@@ -27,15 +27,18 @@ const comfortCards = [
 ];
 
 function getResponsivePaddingLeft(width: number): number {
-  if (width >= 1920) return 127;
-  if (width >= 1536) return 122;
+  if (width >= 1920) return 135;
+  if (width >= 1536) return 125;
+  if (width >= 1440) return 105
+  if (width >= 1280) return 98;
+  if (width >= 1024) return 100;
   if (width >= 768) return 97;
   return 20;
 }
 
 export default function ComfortPage() {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [paddingLeftPx, setPaddingLeftPx] = useState<number>(109);
+  const [paddingLeftPx, setPaddingLeftPx] = useState<number>(95);
   const currentSlide = slides[activeSlide];
 
   useEffect(() => {
@@ -61,7 +64,7 @@ export default function ComfortPage() {
   };
 
   return (
-    <main className="w-full">
+    <main className="w-full text-[#272727]">
       {/* DESKTOP HERO SECTION */}
       <section className="relative hidden h-screen min-h-[650px] w-full overflow-hidden md:block 2xl:min-h-[850px] min-[1920px]:min-h-[1000px]">
         <Image
@@ -200,8 +203,8 @@ export default function ComfortPage() {
               type="button"
               onClick={() => setActiveSlide(index)}
               aria-label={`Go to slide ${index + 1}`}
-              className={`h-1.5 w-1.5 rotate-45 border border-black ${
-                activeSlide === index ? "bg-black" : "bg-black/10"
+              className={`h-1.5 w-1.5 rotate-45 border border-[#272727] ${
+                activeSlide === index ? "bg-[#272727]" : "bg-[#272727]/10"
               }`}
             />
           ))}
@@ -214,25 +217,25 @@ export default function ComfortPage() {
           />
 
           <div className="relative z-10">
-            <h1 className="font-moulin text-[26px] font-light leading-tight sm:text-[30px]">
+            <h1 className="font-moulin text-[26px] font-light leading-tight text-[#272727] sm:text-[30px]">
               {currentSlide.title}
             </h1>
 
-            <p className="mt-5 font-neptune text-[15px] leading-[150%] sm:text-base">
+            <p className="mt-5 font-neptune text-[15px] leading-[150%] text-[#272727] sm:text-base">
               {comfortText}
             </p>
           </div>
         </div>
       </section>
 
-      {/* CONNECT SECTION */}
-      <section className="w-full bg-[#f8f1e7] px-5 py-16 md:px-16 md:py-10 xl:px-16 2xl:px-24 2xl:py-16 min-[1920px]:px-32 min-[1920px]:py-20">
+      {/* CONNECT SECTION (Top padding is 2x bottom padding) */}
+      <section className="w-full bg-[#f8f1e7] px-5 pt-20 pb-10 md:px-16 md:pt-24 md:pb-12 xl:px-16 2xl:px-24 2xl:pt-28 2xl:pb-14 min-[1920px]:px-32 min-[1920px]:pt-32 min-[1920px]:pb-16">
         <div className="grid w-full grid-cols-1 items-start gap-8 md:grid-cols-2 md:gap-12 2xl:gap-16 min-[1920px]:gap-20">
           <h2 className="font-moulin text-[32px] font-medium leading-[150%] text-[#555] md:translate-x-8 2xl:text-[36px] min-[1920px]:translate-x-12 min-[1920px]:text-[40px]">
             Connect with the Local Legends
           </h2>
 
-          <p className="font-neptune text-[15px] leading-[150%] sm:text-base 2xl:text-[17px] min-[1920px]:text-lg">
+          <p className="font-neptune text-[15px] leading-[150%] text-[#333333] sm:text-base 2xl:text-[17px] min-[1920px]:text-lg">
             ChigDil is a cooperative sanctuary with just nine elegant homestays set amidst the grandeur, beauty and spirituality of the Trans-Himalayas. In a society characterized by growing polarization, the community rotation system offers visitors a way to experience how to engage with opposites and the nuances between them to drive constructive change.
           </p>
         </div>
@@ -269,7 +272,7 @@ export default function ComfortPage() {
             A Renewed Living Heritage
           </h2>
 
-          <p className="font-neptune text-[16px] leading-[150%] tracking-wide 2xl:text-[17px] min-[1920px]:text-lg">
+          <p className="font-neptune text-[16px] leading-[150%] tracking-wide text-[#555] 2xl:text-[17px] min-[1920px]:text-lg">
             in our rooms,every detail honors the land its people: hand-
             woven Chahali carpets crafted across generation,traditional ladakhi
             ceiling from local willow wood, and dzems-handmade wooden barrels
@@ -282,7 +285,7 @@ export default function ComfortPage() {
       {/* FULL WIDTH HALL IMAGE */}
       <section className="relative aspect-[16/9] w-full overflow-hidden">
         <Image
-          src="/assets/comfort/hall.png"
+          src="/assets/desktop/comfort/hall.png"
           alt="Hall image"
           width={1200}
           height={1200}

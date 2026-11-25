@@ -17,61 +17,50 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  // Page-based text color
   const isComfortPage = pathname === "/comfort";
 
-  const textColor = isComfortPage
-    ? "text-[#555]"
-    : "text-[#F8F1E7]";
+  const textColor = isComfortPage ? "text-[#272727]" : "text-[#F8F1E7]";
 
-  // Mobile menu background
-  const mobileMenuBg = isComfortPage
-    ? "bg-[#F8F1E7]"
-    : "bg-[#282522]";
+  const mobileMenuBg = isComfortPage ? "bg-[#F8F1E7]" : "bg-[#282522]";
 
   return (
     <header className="absolute z-50 w-full bg-transparent">
-      <nav className="mx-auto flex min-h-[100px] max-w-[1600px] items-center justify-between px-5 sm:px-8 md:px-12 lg:px-20 min-[1070px]:grid min-[1070px]:grid-cols-12">
-
+      <nav className="relative z-50 flex min-h-[100px] w-full items-center justify-between px-5 sm:px-8 md:px-12 lg:px-20 xl:px-22 2xl:px-29 min-[1070px]:grid min-[1070px]:grid-cols-12">
         {/* Logo + Brand */}
-        <div className="flex shrink-0 items-center gap-1 sm:gap-2 min-[1070px]:col-span-4 min-[1920px]:">
-
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2 min-[1070px]:col-span-4">
           {/* Logo */}
           <Link
             href="/"
             aria-label="ChigDil home"
+            onClick={() => setMenuOpen(false)}
             className="relative z-10 flex shrink-0 items-center"
           >
             <Image
-              src="/assets/logo/ChigDil.png"
+              src="/assets/desktop/logo/ChigDil.png"
               alt="ChigDil Homestays Logo"
               width={118}
               height={179}
               unoptimized
-              style={{
-                width:"118px",
-                height:"179px",
-                objectFit:"contain"
-              }}
+              className="h-[122.87px] w-[81px] object-contain min-[1070px]:h-[179px] min-[1070px]:w-[118px]"
             />
           </Link>
 
           {/* Brand Name */}
           <div
-            className={`-translate-y-12 flex items-center gap-1 whitespace-nowrap ${textColor}`}
+            className={`-translate-y-7 flex items-center gap-1 whitespace-nowrap min-[1070px]:-translate-y-12 ${textColor}`}
           >
-            <span className="font-moulin text-[16px] font-medium leading-none">
+            <span className="font-moulin text-[13px] font-medium leading-none min-[1070px]:text-[16px]">
               ChigDil
             </span>
 
             <span
               aria-hidden="true"
-              className="font-moulin -translate-y-1 text-[7px] leading-none"
+              className="font-moulin -translate-y-0.5 text-[6px] leading-none min-[1070px]:-translate-y-1 min-[1070px]:text-[7px]"
             >
               ◆
             </span>
 
-            <span className="font-moulin text-[16px] font-normal leading-none">
+            <span className="font-moulin text-[13px] font-normal leading-none min-[1070px]:text-[16px]">
               Rumbak Homestays
             </span>
           </div>
@@ -79,13 +68,13 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <div
-          className={`hidden min-[1070px]:col-span-8 min-[1070px]:flex -translate-y-12 shrink-0 items-center justify-end gap-5 xl:gap-9 2xl:gap-10 min-[1920px]:gap-10 ${textColor}`}
+          className={`hidden min-[1070px]:col-span-8 min-[1070px]:flex -translate-y-12 shrink-0 items-center justify-end gap-5 xl:gap-9 ${textColor}`}
         >
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="whitespace-nowrap font-neptune text-[16px] font-light leading-none transition-opacity hover:opacity-60"
+              className="whitespace-nowrap font-neptune text-[16px] font-light leading-none hover:opacity-60"
             >
               {link.label}
             </Link>
@@ -93,7 +82,7 @@ export default function Navbar() {
 
           <Link
             href="/booking"
-            className="whitespace-nowrap font-neptune text-[16px] font-light leading-none transition-opacity hover:opacity-60"
+            className="whitespace-nowrap font-neptune text-[16px] font-light leading-none hover:opacity-60"
           >
             Book Your Stay
           </Link>
@@ -105,23 +94,28 @@ export default function Navbar() {
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
-          className={`flex h-10 w-10 shrink-0 items-center justify-center text-3xl min-[1070px]:hidden ${textColor}`}
+          className={`-translate-y-7 flex h-10 w-10 shrink-0 items-center justify-center text-3xl font-light min-[1070px]:hidden ${textColor}`}
         >
-          {menuOpen ? "×" : "☰"}
+          {menuOpen ? "×" : "+"}
         </button>
       </nav>
 
-      {/* Mobile / Tablet Navigation */}
-      {menuOpen && (
-        <div
-          className={`absolute left-0 top-full flex w-full flex-col gap-5 border-t border-black/10 px-6 py-6 shadow-md min-[1070px]:hidden ${mobileMenuBg} ${textColor}`}
-        >
+      {/* Mobile / Tablet Fullscreen Menu (Smooth Fade-in / Fade-out like video) */}
+      <div
+        aria-hidden={!menuOpen}
+        className={`fixed inset-0 z-40 flex min-h-screen w-full flex-col justify-center px-6 pt-24 pb-12 transition-opacity duration-700 ease-in-out min-[1070px]:hidden ${mobileMenuBg} ${textColor} ${
+          menuOpen
+            ? "pointer-events-auto opacity-100"
+            : "pointer-events-none opacity-0"
+        }`}
+      >
+        <div className="flex w-full flex-col">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="font-neptune text-[16px] font-normal"
+              className="w-full border-b-2 border-[#AA391C] py-4 font-neptune text-[17px] font-normal"
             >
               {link.label}
             </Link>
@@ -130,12 +124,12 @@ export default function Navbar() {
           <Link
             href="/booking"
             onClick={() => setMenuOpen(false)}
-            className="font-neptune text-[16px] font-normal"
+            className="w-full border-b-2 border-[#AA391C] py-4 font-neptune text-[17px] font-normal"
           >
             Book Your Stay
           </Link>
         </div>
-      )}
+      </div>
     </header>
   );
 }
