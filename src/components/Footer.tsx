@@ -6,7 +6,7 @@ export default function Footer() {
       {/* 1A. Desktop Footer Background Image */}
       <div className="absolute inset-0 -z-10 max-md:hidden">
         <Image
-          src="/assets/desktop/footer/footer-background.png"
+          src="/assets/footer/footer-background.png"
           alt="Footer background"
           fill
           priority

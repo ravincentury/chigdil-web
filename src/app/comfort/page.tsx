@@ -285,7 +285,7 @@ export default function ComfortPage() {
       {/* FULL WIDTH HALL IMAGE */}
       <section className="relative aspect-[16/9] w-full overflow-hidden">
         <Image
-          src="/assets/desktop/comfort/hall.png"
+          src="/assets/comfort/hall.png"
           alt="Hall image"
           width={1200}
           height={1200}

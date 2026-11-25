@@ -36,7 +36,7 @@ export default function Navbar() {
             className="relative z-10 flex shrink-0 items-center"
           >
             <Image
-              src="/assets/desktop/logo/ChigDil.png"
+              src="/assets/logo/ChigDil.png"
               alt="ChigDil Homestays Logo"
               width={118}
               height={179}
